@@ -1,6 +1,6 @@
 ## krabbitmqctl
 
-krabbitmqctl [`rabbitmqctl`](https://www.rabbitmq.com/rabbitmqctl.8.html) is a command line wrapper for [kubernetes](https://kubernetes.io/) 
+krabbitmqctl is a [`rabbitmqctl`](https://www.rabbitmq.com/rabbitmqctl.8.html)  command line wrapper for [kubernetes](https://kubernetes.io/) 
 
 `rabbitmqctl` is not accesible outside the POD, with `krabbitmqctl` is possible to execute all the `rabbitmqctl` calls
 
