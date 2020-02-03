@@ -1,6 +1,6 @@
 ## krabbitmqctl
 
-krabbitmqctl [`rabbitmqctl`](https://www.rabbitmq.com/rabbitmqctl.8.html) is a command line wrapper for kubernetes 
+krabbitmqctl [`rabbitmqctl`](https://www.rabbitmq.com/rabbitmqctl.8.html) is a command line wrapper for [kubernetes](https://kubernetes.io/) 
 
 `rabbitmqctl` is not accesible outside the POD, with `krabbitmqctl` is possible to execute all the `rabbitmqctl` calls
 
@@ -22,7 +22,7 @@ Flags:
 for example:
 
 ```
-krabbitmqctl list_queues
+➜ krabbitmqctl list_queues
 Timeout: 60.0 seconds ...
 Listing queues for vhost / ...
 name    messages
@@ -34,7 +34,7 @@ test    0
 or
 
 ```
-krabbitmqctl list_queues -n default -s rabbitmq
+➜ krabbitmqctl list_queues -n default -s rabbitmq
 Timeout: 60.0 seconds ...
 Listing queues for vhost / ...
 name    messages
