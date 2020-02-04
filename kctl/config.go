@@ -6,4 +6,5 @@ type Config struct {
 	NameSpace   string
 	ServiceName string
 	CtlCommand  []string
+	PodName string
 }
