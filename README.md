@@ -4,10 +4,43 @@ krabbitmqctl is a [`rabbitmqctl`](https://www.rabbitmq.com/rabbitmqctl.8.html)  
 
 `rabbitmqctl` is not accesible outside the POD, with `krabbitmqctl` is possible to execute all the `rabbitmqctl` calls
 
+## Install
+
+Download the binary:
+
+### Linux
+
+```bash
+curl -L https://github.com/Gsantomaggio/krabbitmqctl/releases/download/$(curl -sL https://raw.githubusercontent.com/Gsantomaggio/krabbitmqctl/master/version.txt)/krabbitmqctl_linux_amd64 -o krabbitmqctl
+chmod +x krabbitmqctl
+```
+move it some `bin` location:
+
+```bash
+ sudo mv krabbitmqctl /usr/local/bin
+```
+
+### Mac
+
+```bash
+curl -L https://github.com/Gsantomaggio/krabbitmqctl/releases/download/$(curl -sL https://raw.githubusercontent.com/Gsantomaggio/krabbitmqctl/master/version.txt)/krabbitmqctl_darwin_amd64 -o krabbitmqctl
+chmod +x krabbitmqctl
+```
+move it some `bin` location
+
+
+### Windows
+
+Download the windows binary from the releases: https://github.com/Gsantomaggio/krabbitmqctl/releases 
+
+
+
 
 ## How it works
 
 ```
+rabbitmqctl kubernetes interface command
+
 Usage:
   rabbitmqctl command [flags]
 
@@ -16,7 +49,9 @@ Flags:
   -h, --help                help for rabbitmqctl
       --kubeconfig string   Path to kubeconfig file to use
   -n, --namespace string    Kubernetes namespace to use. Default to namespace configured in Kubernetes context (default "default")
+  -p, --podname string      Pod where execute the command. Default is "" pick one random
   -s, --service string      RabbitMQ Service (default "rabbitmq")
+  -v, --version             Print the version and exit
 ```
 
 for example:
