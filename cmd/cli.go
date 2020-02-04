@@ -42,7 +42,7 @@ func Run() {
 
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
 		if opts.version {
-			fmt.Printf("version %s\n", version)
+			fmt.Printf("%s\n", version)
 			return nil
 		}
 
