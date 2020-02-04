@@ -31,7 +31,7 @@ move it some `bin` location
 
 ### Windows
 
-Download the windows binary from the releases: https://github.com/Gsantomaggio/krabbitmqctl/releases 
+Download the windows binary from the [releases page](https://github.com/Gsantomaggio/krabbitmqctl/releases) 
 
 
 
