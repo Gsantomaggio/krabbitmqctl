@@ -12,20 +12,21 @@ import (
 	"path/filepath"
 )
 
+const version = "0.1.0"
+
 type Options struct {
-	serviceName    string
-	kubeConfig string
-	context    string
-	namespace  string
-	podName    string
-
-
+	version     bool
+	serviceName string
+	kubeConfig  string
+	context     string
+	namespace   string
+	podName     string
 }
 
 var opts = &Options{
 	serviceName: "rabbitmq",
-	namespace: "default",
-	podName: "",
+	namespace:   "default",
+	podName:     "",
 }
 
 func Run() {
@@ -37,8 +38,13 @@ func Run() {
 	cmd.Flags().StringVar(&opts.kubeConfig, "kubeconfig", opts.kubeConfig, "Path to kubeconfig file to use")
 	cmd.Flags().StringVarP(&opts.namespace, "namespace", "n", opts.namespace, "Kubernetes namespace to use. Default to namespace configured in Kubernetes context")
 	cmd.Flags().StringVarP(&opts.podName, "podname", "p", opts.podName, "Pod where execute the command. Default is \"\" pick one random")
+	cmd.Flags().BoolVarP(&opts.version, "version", "v", opts.version, "Print the version and exit")
 
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		if opts.version {
+			fmt.Printf("version %s\n", version)
+			return nil
+		}
 
 		narg := len(args)
 		if narg == 0 {
@@ -77,9 +83,9 @@ func parseConfig(args []string) (*kctl.Config, error) {
 		KubeConfig:  kubeConfig,
 		ContextName: opts.context,
 		NameSpace:   opts.namespace,
-		CtlCommand: args,
+		CtlCommand:  args,
 		ServiceName: opts.serviceName,
-		PodName: opts.podName,
+		PodName:     opts.podName,
 	}, nil
 }
 
