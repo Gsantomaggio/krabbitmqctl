@@ -45,13 +45,14 @@ Usage:
   rabbitmqctl command [flags]
 
 Flags:
-      --context string      Kubernetes context to use. Default to current context configured in kubeconfig.
-  -h, --help                help for rabbitmqctl
-      --kubeconfig string   Path to kubeconfig file to use
-  -n, --namespace string    Kubernetes namespace to use. Default to namespace configured in Kubernetes context (default "default")
-  -p, --podname string      Pod where execute the command. Default is "" pick one random
-  -s, --service string      RabbitMQ Service (default "rabbitmq")
-  -v, --version             Print the version and exit
+      --context string        Kubernetes context to use. Default to current context configured in kubeconfig.
+  -h, --help                  help for rabbitmqctl
+      --kubeconfig string     Path to kubeconfig file to use
+  -n, --namespace string      Kubernetes namespace to use. Default to namespace configured in Kubernetes context (default "default")
+  -p, --podname string        Pod where execute the command. Default is "" pick one random
+  -s, --service string        RabbitMQ Service (default "rabbitmq")
+  -v, --version               Print the version and exit
+  -p, --virtual host string   RabbitMQ virtual Host (default "/")
 ```
 
 for example:
