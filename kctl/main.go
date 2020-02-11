@@ -48,11 +48,14 @@ func Run(ctx context.Context, config *Config) (string, string, error) {
 
 	buf := &bytes.Buffer{}
 	errBuf := &bytes.Buffer{}
-
+//	log.Printf("Going to query %s", podToQuery)
 	ctlCommand := []string{"rabbitmqctl"}
 	for _, parameters := range config.CtlCommand {
 		ctlCommand = append(ctlCommand, parameters)
 	}
+
+	ctlCommand = append(ctlCommand, "-p")
+	ctlCommand = append(ctlCommand, config.VirtualHost)
 
 	option := &v1.PodExecOptions{
 		Command: ctlCommand,
