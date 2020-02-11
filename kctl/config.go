@@ -7,4 +7,6 @@ type Config struct {
 	ServiceName string
 	CtlCommand  []string
 	PodName string
+	// RabbitMQ Options
+	VirtualHost string
 }

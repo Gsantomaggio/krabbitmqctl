@@ -21,25 +21,30 @@ type Options struct {
 	context     string
 	namespace   string
 	podName     string
+	///rabbitmq options
+	virtualHost string
+
+
 }
 
 var opts = &Options{
 	serviceName: "rabbitmq",
 	namespace:   "default",
 	podName:     "",
+	virtualHost: "/",
 }
 
 func Run() {
 	cmd := &cobra.Command{}
 	cmd.Short = "rabbitmqctl kubernetes interface command "
 	cmd.Use = "rabbitmqctl command"
+	cmd.Flags().StringVarP(&opts.virtualHost, "virtual host", "p", opts.virtualHost, "RabbitMQ virtual Host")
 	cmd.Flags().StringVarP(&opts.serviceName, "service", "s", opts.serviceName, "RabbitMQ Service")
 	cmd.Flags().StringVar(&opts.context, "context", opts.context, "Kubernetes context to use. Default to current context configured in kubeconfig.")
 	cmd.Flags().StringVar(&opts.kubeConfig, "kubeconfig", opts.kubeConfig, "Path to kubeconfig file to use")
 	cmd.Flags().StringVarP(&opts.namespace, "namespace", "n", opts.namespace, "Kubernetes namespace to use. Default to namespace configured in Kubernetes context")
-	cmd.Flags().StringVarP(&opts.podName, "podname", "p", opts.podName, "Pod where execute the command. Default is \"\" pick one random")
+	cmd.Flags().StringVarP(&opts.podName, "podname", "i", opts.podName, "Pod where execute the command. Default is \"\" pick one random")
 	cmd.Flags().BoolVarP(&opts.version, "version", "v", opts.version, "Print the version and exit")
-
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
 		if opts.version {
 			fmt.Printf("%s\n", version)
@@ -86,6 +91,7 @@ func parseConfig(args []string) (*kctl.Config, error) {
 		CtlCommand:  args,
 		ServiceName: opts.serviceName,
 		PodName:     opts.podName,
+		VirtualHost: opts.virtualHost,
 	}, nil
 }
 
