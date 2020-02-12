@@ -42,13 +42,16 @@ func Run(ctx context.Context, config *Config) (string, string, error) {
 	if errPod != nil {
 		return "", "", errPod
 	}
-
 	req := clientset.CoreV1().RESTClient().Post().Resource("pods").Name(podToQuery).
 		Namespace(config.NameSpace).SubResource("exec")
 
+	if len(config.ContainerName) > 0 {
+		req.Param("container", config.ContainerName)
+	}
+
 	buf := &bytes.Buffer{}
 	errBuf := &bytes.Buffer{}
-//	log.Printf("Going to query %s", podToQuery)
+	//	log.Printf("Going to query %s", podToQuery)
 	ctlCommand := []string{"rabbitmqctl"}
 	for _, parameters := range config.CtlCommand {
 		ctlCommand = append(ctlCommand, parameters)
@@ -95,6 +98,7 @@ func getPodToQuery(config *Config, pods *v1.PodList) (string, error) {
 		return strings.ToLower(config.PodName), nil
 	} else {
 		for _, pod := range pods.Items {
+
 			return pod.Name, nil
 		}
 	}
